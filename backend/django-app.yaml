@@ -1,0 +1,101 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: test
+#   labels:
+#     app: test
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       name: test
+#   template:
+#     metadata:
+#       labels:
+#         name: test
+#     spec:
+#       containers:
+#         - name: test
+#           image: eroth197/atc_app:ver1
+#           imagePullPolicy: Always
+#           ports:
+#             - containerPort: 8000
+#           env:
+#             - name: POSTGRES_USER
+#               value: "postgres"
+#             - name: POSTGRES_PASSWORD
+#               value: "postgres"
+#             - name: POSTGRES_DB
+#               value: "postgres"
+            
+
+# ---
+# # START Service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: atc-app
+#   labels:
+#     app: test
+# spec:
+#   type: LoadBalancer
+#   ports:
+#     - port: 80 #port that the service exposes
+#       targetPort: 8000 #port that the app is receiving requests from via the pod
+#   selector:
+#     name: atc-app
+# # END SERVICE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      containers:
+      - name: django-app
+        image: eroth197/atc_app:1
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_HOST
+          value: "server765386461.postgres.database.azure.com"
+        - name: DATABASE_USER
+          value: "direfulraccoon1"
+        - name: DATABASE_PASSWORD
+          value: "crozhCGvLvue8f01Tv1UAQ"
+        - name: DATABASE_NAME
+          value: "flexibleserverdb"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                    - django-app
+              topologyKey: "kubernetes.io/hostname"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-svc
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: ZD-AirTrafficControl
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  selector:
+    app: django-app

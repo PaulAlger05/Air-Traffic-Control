@@ -1,0 +1,145 @@
+
+/* extra small css fixes */
+h1.home {
+  color: rgb(20, 61, 138);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+   }
+.right {
+    position: absolute;
+    right: 0;
+    padding-right: 30px;
+}
+
+
+/* header and buttons */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+}
+
+.grid-item { 
+  position: absolute;
+  right: 0;
+  padding-right: 30px;
+} 
+
+
+/* Airport list */
+body {
+  color: #404E67;
+  background: #F5F7FA;
+  font-family: 'Open Sans', sans-serif;
+  }
+  .table-wrapper {
+  width: 700px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  }
+  .table-title {
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+  }
+  .table-title h2 {
+  margin: 6px 0 0;
+  font-size: 22px;
+  }
+  .table-title .add-new {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+  }
+  .table-title .add-new i {
+  margin-right: 4px;
+  }
+  table.table {
+  table-layout: fixed;
+  }
+  table.table tr th, table.table tr td {
+  border-color: #e9e9e9;
+  }
+  table.table th i {
+  font-size: 13px;
+  margin: 0 5px;
+  cursor: pointer;
+  }
+  table.table th:last-child {
+  width: 100px;
+  }
+  table.table td a {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+  }
+  table.table td a.add {
+  color: #27C46B;
+  }
+  table.table td a.edit {
+  color: #FFC107;
+  }
+  table.table td a.delete {
+  color: #E34724;
+  }
+  table.table td i {
+  font-size: 19px;
+  }
+  table.table td a.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+  }
+  table.table .form-control {
+  height: 32px;
+  line-height: 32px;
+  box-shadow: none;
+  border-radius: 2px;
+  }
+  table.table .form-control.error {
+  border-color: #f50000;
+  }
+  table.table td .add {
+  display: none;
+  }
+
+
+/* Paul's Fancy button */
+button {
+  font-size: 18px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow,transform;
+  background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+  box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: white !important;
+  height: 2.6em;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+button:hover {
+  box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
+  transform: translateY(-0.1em);
+}
+
+button:active {
+  box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
+  transform: translateY(0em);
+}
+  

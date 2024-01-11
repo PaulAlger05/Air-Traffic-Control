@@ -1,0 +1,15 @@
+<h1>Add Airport</h1>
+
+<form action="addrecord/" method="post">
+{% csrf_token %}
+Airport_Name:<br>
+<input name="airportname">
+<br><br>
+X_Coordinate:<br>
+<input name="xcoord">
+<br><br>
+Y_Coordinate:<br>
+<input name="ycoord">
+<br><br>
+<input type="submit" value="Submit">
+</form>

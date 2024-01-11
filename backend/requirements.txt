@@ -1,0 +1,6 @@
+
+djangorestframework
+Django
+postgres
+psycopg2-pool
+pytz

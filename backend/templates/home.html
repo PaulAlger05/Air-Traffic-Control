@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% load rest_framework %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="content">
+      {% block content %}
+        {% if user.is_authenticated %}
+
+        <div class="grid-container">
+          <div>
+            <h1 class="home">CpS 420 <br> Air Traffic Control </h1>
+          </div>
+          {% comment %}
+          <div class="grid-item">
+            <a href="Airports">
+              <button>Airports</button>
+            </a>
+          </div>
+          <div class="grid-item">
+            <a href="Airports/create">
+              <button>New +</button>
+            </a>
+          </div>   {% endcomment %}
+          <div class="grid-item">
+            <a href="{% url 'logout' %}">
+              <button >Log Out</button>
+              </a>
+            </p>
+            </td>
+          </tr>
+        </table>
+
+
+
+        <div class="container">
+          <div class="table-wrapper">
+          <div class="table-title">
+          <div class="row">
+          <div class="col-sm-8"><h2><b>Airport List</b></h2></div>
+          {% comment %} <div class="col-sm-4">
+          <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+          </div> {% endcomment %}
+          </div>
+          </div>
+          <table class="table table-bordered">
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>X Coordinate</th>
+              <th>Y Coordinate</th>
+              {% comment %} <th>Actions</th> {% endcomment %}
+          </tr>
+          </thead>
+          <tbody>
+
+          {% for airport in airports %}
+          <tr>
+              <td> {{ airport.name }}</td>
+              <td>{{ airport.X }}</td>
+              <td>{{ airport.Y }}</td>
+              {% comment %} <td>
+              <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+              <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+              <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+              </td> {% endcomment %}
+          </tr>
+          {% endfor %}
+
+          </tbody>
+          </table>
+          </div>
+          </div>
+
+
+
+
+
+        {% else %}
+        <table>
+          <tr>
+            <td> 
+              <p>You are not logged in</p>
+            </td>
+            <td class="right">
+              <a href="{% url 'login' %}">
+                <button >Log In</button>
+              </a>
+            </td>
+          </tr>
+        </table>
+        {% endif %}
+      {% endblock %}
+    </div>
+</body>
+</html>

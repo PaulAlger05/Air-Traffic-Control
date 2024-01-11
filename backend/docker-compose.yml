@@ -1,0 +1,52 @@
+# version: '3'
+# services:
+#   db:
+#     image: postgres:16
+#     container_name: ATC_DB
+#     ports:
+#       - "5432:5432"
+#     env_file: .env
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${POSTGRES_DB}
+#   web:
+#     build: .
+#     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+#     container_name: ATC_Web
+#     volumes:
+#       - .:/ATC_Web_Project
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - db
+version: "3.8"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/ATC_App
+    ports:
+      - 8000:8000
+    image: app:django
+    container_name: django_container
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    # env_file: .env 
+    environment:
+      # Local deployment: DB Config
+      # - DATABASE_NAME=${DATABASE_NAME} 
+      # - DATABASE_USER=${DATABASE_USER}
+      # - DATABASE_PASS=${DATABASE_PASS}
+      # -------------------------------
+      # Docker deployment: DB Config
+      - POSTGRES_DB=postgres  
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    
+    container_name: postgres_db

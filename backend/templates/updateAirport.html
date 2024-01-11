@@ -1,0 +1,15 @@
+<h1>Update Airport</h1>
+
+<form action="updaterecord/{{ airport.id }}" method="post">
+{% csrf_token %}
+Airport_Name:<br>
+<input name="airportname" value="{{airport.name}}">
+<br><br>
+X_Coordinate:<br>
+<input name="xcoord" value="{{airport.x}}">
+<br><br>
+Y_Coordinate:<br>
+<input name="ycoord" value="{{airport.y}}">
+<br><br>
+<input type="submit" value="Submit">
+</form>
